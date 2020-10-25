@@ -8,8 +8,11 @@ public class PlayerStats : MonoBehaviour
     private int seedCount = 0;
     [SerializeField]
     private int seedCapacity = 10;
-    [SerializeField]
-    private int health = 100;
+
+    public Team team;
+
+    Health health;
+
 
     private HUDManager HUD;
     /*
@@ -31,6 +34,7 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         HUD = GetComponentInChildren<HUDManager>();
+        health = GetComponent<Health>();
     }
 
     // Update is called once per frame

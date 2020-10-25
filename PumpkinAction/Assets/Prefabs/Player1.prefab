@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 160632402}
   - component: {fileID: 160632401}
   - component: {fileID: 160632404}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,9 +50,9 @@ Canvas:
   m_GameObject: {fileID: 160632399}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 4903183298727609027}
-  m_PlaneDistance: 1
+  m_PlaneDistance: 0
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 306425213}
   - component: {fileID: 306425215}
   - component: {fileID: 306425214}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: seedCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 595378487}
   - component: {fileID: 595378489}
   - component: {fileID: 595378488}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: seedImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +277,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4903183297280089112}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cameraAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 4903183297290379477}
   - component: {fileID: 4903183297290379479}
   - component: {fileID: 4903183297290379476}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: playerPhys
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -387,7 +387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4903183297618568681}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: playerBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -420,7 +420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4903183297839741152}
   - component: {fileID: 4903183297839741155}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GunSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -503,7 +503,7 @@ GameObject:
   - component: {fileID: 4903183297861642770}
   - component: {fileID: 4903183297861642783}
   - component: {fileID: 4903183297861642780}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: playerSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -604,7 +604,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4903183297897204970}
   - component: {fileID: 4903183297897204981}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GunFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -685,7 +685,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4903183298438954742}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: weaponAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -722,7 +722,8 @@ GameObject:
   - component: {fileID: 4903183298460328917}
   - component: {fileID: 6685240275307403731}
   - component: {fileID: 1473632003}
-  m_Layer: 0
+  - component: {fileID: 5187962811770609962}
+  m_Layer: 10
   m_Name: Player1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -850,7 +851,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seedCount: 0
   seedCapacity: 10
-  health: 100
+  team: 0
+--- !u!114 &5187962811770609962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4903183298460328905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3117dc93e59b824fa6bbd23c7502a9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  healthDepleted:
+    m_PersistentCalls:
+      m_Calls: []
+  healthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  maxHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4903183298727609025
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,7 +887,7 @@ GameObject:
   - component: {fileID: 4903183298727609027}
   - component: {fileID: 4903183298727609024}
   - component: {fileID: 4903183298727609037}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}

@@ -104,7 +104,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6620345902358139710}
+  - component: {fileID: 1939430128665660176}
   - component: {fileID: 6620345902358139711}
+  - component: {fileID: 8858236529315071905}
   m_Layer: 15
   m_Name: TestTurret
   m_TagString: Untagged
@@ -129,6 +131,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1939430128665660176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6620345902358139708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8e66e4ba5cc0b46b00b78c70c706b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
 --- !u!114 &6620345902358139711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,11 +157,91 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotatingPart: {fileID: 6620345903266277250}
-  range: 10
-  ShotCooldownTime: 1
-  ProjectilePrefab: {fileID: 7625153250411958239, guid: 058b3d2236b824b42acfbd8af4c9f3b5, type: 3}
+  range: 200
+  ShotCooldownTime: 0.5
   BarrelTip: {fileID: 6620345902643149730}
-  projectileVelocity: 5
+  projectileGravity: -100
+  xRotationVariance: 0.1
+  yRotationVariance: 0.1
+  turretType: 1
+  rangeUpgrade: 2
+  fireRateUpgrade: 0
+  damageUpgrade: 2
+  healthUpgrade: 0
+  Chunker_DamageLevel1: {fileID: 2599205830221815936, guid: 48be2b30ad816b74e988b23828e776f0, type: 3}
+  Chunker_DamageLevel2: {fileID: 7929229625010669153, guid: ec8965ed0a327d44199d5ee2f5ae2e52, type: 3}
+  Chunker_DamageLevel3: {fileID: 4887933736533761793, guid: e040d424770bbb2498cc8b9f9254ec31, type: 3}
+  Minipumpkin_DamageLevel1: {fileID: 6798865074821280120, guid: 35f76f703d3e5e64eb968c7a1f8dc6d2, type: 3}
+  Minipumpkin_DamageLevel2: {fileID: 3412907341039126639, guid: 46e78bb9545eef141aa97079a0ceec10, type: 3}
+  Minipumpkin_DamageLevel3: {fileID: 423772974242616212, guid: 14fa6d4b4bbe9664f8f72bf6c87e32fb, type: 3}
+  WebShooter_DamageLevel1: {fileID: 0}
+  WebShooter_DamageLevel2: {fileID: 0}
+  WebShooter_DamageLevel3: {fileID: 0}
+  chunker_range_level:
+  - 10
+  - 20
+  - 25
+  chunker_fireRate_level:
+  - 3
+  - 2
+  - 1
+  chunker_damage_level:
+  - 10
+  - 20
+  - 25
+  chunker_health_level: 64000000c8000000f4010000
+  chunker_variance: 0.1
+  minipumpkin_range_level:
+  - 5
+  - 10
+  - 15
+  minipumpkin_fireRate_level:
+  - 0.5
+  - 0.2
+  - 0.01
+  minipumpkin_damage_level:
+  - 1
+  - 3
+  - 5
+  minipumpkin_health_level: 64000000c8000000f4010000
+  minipumpkin_variance: 0.4
+  webshooter_range_level:
+  - 10
+  - 20
+  - 25
+  webshooter_fireRate_level:
+  - 10
+  - 20
+  - 25
+  webshooter_damage_level:
+  - 10
+  - 20
+  - 25
+  webshooter_health_level: 64000000c8000000f4010000
+  webshooter_variance: 0.1
+--- !u!114 &8858236529315071905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6620345902358139708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3117dc93e59b824fa6bbd23c7502a9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 100
+  healthDepleted:
+    m_PersistentCalls:
+      m_Calls: []
+  healthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  maxHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6620345902643149731
 GameObject:
   m_ObjectHideFlags: 0
