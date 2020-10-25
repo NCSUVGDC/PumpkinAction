@@ -8,7 +8,16 @@ public class Pickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PickItUp();
+            bool? pickedUp = other.gameObject.GetComponentInParent<PlayerStats>()?.AddSeed();
+
+            if (pickedUp == true)
+            {
+                PickItUp();
+            }
+            else if (pickedUp == null)
+            {
+                Debug.LogWarning("PlayerStats was not found when picking up seed");
+            }
         }
     }
 
