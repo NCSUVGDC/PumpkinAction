@@ -9,9 +9,12 @@ public class ExplodeOnImpact : MonoBehaviour
     public float splashRadius;
     public float damage;
 
+    TeamTag teamTag;
+
     private void Start()
     {
         audioManager = FindObjectOfType<AudioManager>();
+        teamTag = GetComponent<TeamTag>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -19,18 +22,34 @@ public class ExplodeOnImpact : MonoBehaviour
         audioManager.Play("Test");
 
         Collider[] objectsInRange = Physics.OverlapSphere(this.transform.position, splashRadius);
+        HashSet<GameObject> hitObjects = new HashSet<GameObject>();
         foreach(Collider col in objectsInRange)
         {
-            Health enemy = col.GetComponentInParent<Health>();
 
-            if (enemy != null)
+            TeamTag otherTag = col.GetComponentInParent<TeamTag>();
+            
+
+            if (otherTag != null && !hitObjects.Contains(col.gameObject))
             {
-                // linear falloff of effect
-                float proximity = (this.transform.position - enemy.transform.position).magnitude;
-                float effect = 1 - (proximity / splashRadius);
+                hitObjects.Add(col.gameObject);
 
+                if (otherTag.team != teamTag.team) //Only damage other teams
+                {
+                    Health enemy = col.GetComponentInParent<Health>();
+                    
+                    if (enemy != null)
+                    {
+                        // linear falloff of effect
+                        float proximity = (this.transform.position - col.transform.position).magnitude;
+                        if (proximity > 1f)
+                            break;
+                        float effect = 1 - (proximity / splashRadius);
 
-                enemy.ApplyDamage((int) (damage * effect));
+                        Debug.Log("Applying " + ((int)damage * effect) + " damage to " + enemy.gameObject.name);
+                        enemy.ApplyDamage((int)(damage * effect));
+
+                    }
+                }
             }
         }
 

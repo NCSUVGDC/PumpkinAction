@@ -33,10 +33,13 @@ public class Turret : MonoBehaviour
     public float projectileGravity = -9.81f;
     public float xRotationVariance = 0f;
     public float yRotationVariance = 0f;
+    public float damage = 1f;
+    public float splashRadius = 1f;
 
     //Team
     private TeamTag teamTag;
     private Team[] attackTeams;
+    ArrayList enemies;
 
     [Header("Turret Stats")]
     public TurretType turretType;
@@ -65,6 +68,7 @@ public class Turret : MonoBehaviour
     public float[] chunker_range_level = new float[] { 10f, 20f, 25f };
     public float[] chunker_fireRate_level = new float[] { 3f, 2f, 1f };
     public float[] chunker_damage_level = new float[] { 10f, 20f, 25f };
+    public float[] chunker_splash_radius_level = new float[] { 1f, 2f, 3f }; //splash radius upgrades with damage
     public int[] chunker_health_level = new int[] { 100, 200, 500 };
     public float chunker_variance = .1f;
 
@@ -74,6 +78,7 @@ public class Turret : MonoBehaviour
     public float[] minipumpkin_range_level = new float[] { 5f, 10f, 15f };
     public float[] minipumpkin_fireRate_level = new float[] { .5f, .2f, .05f };
     public float[] minipumpkin_damage_level = new float[] { 1f, 3f, 5f };
+    public float[] minipumpkin_splash_radius_level = new float[] { .1f, .2f, .3f };
     public int[] minipumpkin_health_level = new int[] { 50, 100, 300 };
     public float minipumpkin_variance = .6f;
 
@@ -82,12 +87,15 @@ public class Turret : MonoBehaviour
     public float[] webshooter_range_level = new float[] { 10f, 20f, 25f };
     public float[] webshooter_fireRate_level = new float[] { 10f, 20f, 25f };
     public float[] webshooter_damage_level = new float[] { 10f, 20f, 25f };
+    public float[] webshooter_splash_radius_level = new float[] { 1f, 2f, 3f };
     public int[] webshooter_health_level = new int[] { 100, 200, 500 };
     public float webshooter_variance = .1f;
 
     bool readyToShoot = true;
     bool active = true;
-    LayerMask enemies;
+
+
+
     private AudioManager audioManager;
     private Vector3 shotVariance;
     private GameObject projectilePrefab;
@@ -98,6 +106,7 @@ public class Turret : MonoBehaviour
     private Level previousDamage;
     private Level previousFireRate;
     private Level previousHealth;
+    private Team previousTeam;
 
     private Health health;
 
@@ -177,6 +186,8 @@ public class Turret : MonoBehaviour
                 ChangeProjectileType();
                 range = chunker_range_level[(int)rangeUpgrade];
                 ShotCooldownTime = chunker_fireRate_level[(int)fireRateUpgrade];
+                damage = chunker_damage_level[(int) damageUpgrade];
+                splashRadius = chunker_splash_radius_level[(int)damageUpgrade];
                 if(previousHealth != healthUpgrade)
                     health.SetMaxHealth(chunker_health_level[(int)healthUpgrade]);
                 xRotationVariance = chunker_variance;
@@ -186,6 +197,8 @@ public class Turret : MonoBehaviour
                 ChangeProjectileType();
                 range = minipumpkin_range_level[(int)rangeUpgrade];
                 ShotCooldownTime = minipumpkin_fireRate_level[(int)fireRateUpgrade];
+                damage = minipumpkin_damage_level[(int)damageUpgrade];
+                splashRadius = minipumpkin_splash_radius_level[(int)damageUpgrade];
                 if (previousHealth != healthUpgrade)
                     health.SetMaxHealth(minipumpkin_health_level[(int)healthUpgrade]);
                 xRotationVariance = minipumpkin_variance;
@@ -195,6 +208,8 @@ public class Turret : MonoBehaviour
                 ChangeProjectileType();
                 range = webshooter_range_level[(int)rangeUpgrade];
                 ShotCooldownTime = webshooter_fireRate_level[(int)fireRateUpgrade];
+                damage = webshooter_damage_level[(int)damageUpgrade];
+                splashRadius = webshooter_splash_radius_level[(int)damageUpgrade];
                 if (previousHealth != healthUpgrade)
                     health.SetMaxHealth(minipumpkin_health_level[(int)healthUpgrade]);
                 xRotationVariance = webshooter_variance;
@@ -210,7 +225,18 @@ public class Turret : MonoBehaviour
         previousHealth = healthUpgrade;
         previousType = turretType;
     }
-    // Start is called before the first frame update
+    
+    void DesignateEnemies()
+    {
+        Team[] teams = (Team[]) Enum.GetValues(typeof(Team));
+        enemies = new ArrayList(teams);
+
+        enemies.RemoveAt(enemies.IndexOf(teamTag.team));
+        enemies.RemoveAt(enemies.IndexOf(Team.Neutral));
+
+        previousTeam = teamTag.team;
+    }
+
     void Start()
     {
         health = GetComponent<Health>();
@@ -220,17 +246,8 @@ public class Turret : MonoBehaviour
         teamTag = GetComponent<TeamTag>();
 
         //Set who enemies are so it doesn't shoot at team members
-        string[] teamNames = Enum.GetNames(typeof(Team));
-        ArrayList enemies = new ArrayList(0);
+        DesignateEnemies();
 
-        foreach(string teamName in teamNames)
-        {
-            if(teamName != teamTag.team.ToString() && teamName != Team.Neutral.ToString())
-            {
-                enemies.Add(teamName);
-            }
-        }
-        this.enemies = LayerMask.GetMask((string[])enemies.ToArray(typeof(string)));
         audioManager = FindObjectOfType<AudioManager>();
 
         ApplyTurretUpgrade();
@@ -246,20 +263,34 @@ public class Turret : MonoBehaviour
             ApplyTurretUpgrade();
         }
 
+        //team changed set new targets
+        if (teamTag.team != previousTeam)
+            DesignateEnemies();
+
             if (active)
             {
                 GameObject trueEnemy = null; //Target the closest enemy
                 float trueEnemyDistance = range;
-                Collider[] hitColliders = Physics.OverlapCapsule(transform.position + new Vector3(0, 10, 0), transform.position + new Vector3(0, -10, 0), range, enemies);
-                foreach (var enemy in hitColliders)
+                Collider[] hitColliders = Physics.OverlapCapsule(transform.position + new Vector3(0, 10, 0), transform.position + new Vector3(0, -10, 0), range);
+                foreach (var col in hitColliders)
                 {
-                    Debug.Log("Found an enemy " + enemy.gameObject.name);
-                    var enemyDistance = (transform.position - enemy.transform.position).magnitude;
-                    if (enemyDistance < trueEnemyDistance)
+                    TeamTag otherTag = col.GetComponentInParent<TeamTag>(); 
+                    if(otherTag != null)
                     {
-                        trueEnemy = enemy.gameObject;
-                        trueEnemyDistance = enemyDistance;
-                    }
+                        if(enemies.Contains(otherTag.team))
+                        {
+                            var enemy = otherTag.gameObject;
+                            Debug.Log("Found an enemy " + enemy.gameObject.name);
+                            var enemyDistance = (transform.position - enemy.transform.position).magnitude;
+                            if (enemyDistance < trueEnemyDistance)
+                            {
+                                trueEnemy = enemy.gameObject;
+                                trueEnemyDistance = enemyDistance;
+                            }
+                        }   
+                    }    
+
+
                 }
                 if (trueEnemy != null)
                 {
@@ -278,6 +309,13 @@ public class Turret : MonoBehaviour
                         shotVariance = new Vector3(Random.Range(-xRotationVariance, xRotationVariance), Random.Range(-yRotationVariance, yRotationVariance), 1);
 
                         GameObject projectile = GameObject.Instantiate(projectilePrefab, BarrelTip.position, BarrelTip.rotation);
+                        ExplodeOnImpact damager = projectile.GetComponent<ExplodeOnImpact>();
+                        damager.damage = damage;
+                        damager.splashRadius = splashRadius;
+
+                        TeamTag projectileTeam = projectile.GetComponent<TeamTag>();
+                        projectileTeam.team = teamTag.team;
+
                         Rigidbody projectileBody = projectile.GetComponent<Rigidbody>();
                         projectileBody.velocity = calcVelocity * (BarrelTip.TransformVector(shotVariance));
                         projectileBody.useGravity = false;
