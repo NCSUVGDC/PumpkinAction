@@ -314,13 +314,13 @@ MonoBehaviour:
   - 2
   - 1
   chunker_damage_level:
-  - 10
-  - 20
   - 25
+  - 50
+  - 100
   chunker_splash_radius_level:
-  - 1
   - 2
   - 3
+  - 5
   chunker_health_level: 64000000c8000000f4010000
   chunker_variance: 0.1
   minipumpkin_range_level:

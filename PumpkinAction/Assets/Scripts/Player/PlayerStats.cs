@@ -9,8 +9,6 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private int seedCapacity = 10;
 
-    public Team team;
-
     Health health;
 
 

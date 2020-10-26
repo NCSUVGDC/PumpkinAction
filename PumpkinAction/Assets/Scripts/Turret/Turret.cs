@@ -269,9 +269,9 @@ public class Turret : MonoBehaviour
 
             if (active)
             {
-                GameObject trueEnemy = null; //Target the closest enemy
+                Transform trueEnemy = null; //Target the closest enemy
                 float trueEnemyDistance = range;
-                Collider[] hitColliders = Physics.OverlapCapsule(transform.position + new Vector3(0, 10, 0), transform.position + new Vector3(0, -10, 0), range);
+            Collider[] hitColliders = Physics.OverlapCapsule(transform.position + new Vector3(0, 10, 0), transform.position + new Vector3(0, -10, 0), range, LayerMask.GetMask("Player", "Turret"));
                 foreach (var col in hitColliders)
                 {
                     TeamTag otherTag = col.GetComponentInParent<TeamTag>(); 
@@ -281,10 +281,10 @@ public class Turret : MonoBehaviour
                         {
                             var enemy = otherTag.gameObject;
                             Debug.Log("Found an enemy " + enemy.gameObject.name);
-                            var enemyDistance = (transform.position - enemy.transform.position).magnitude;
-                            if (enemyDistance < trueEnemyDistance)
+                            var enemyDistance = (transform.position - col.transform.position).magnitude;
+                        if (enemyDistance < trueEnemyDistance)
                             {
-                                trueEnemy = enemy.gameObject;
+                                trueEnemy = col.transform;
                                 trueEnemyDistance = enemyDistance;
                             }
                         }   
@@ -294,7 +294,6 @@ public class Turret : MonoBehaviour
                 }
                 if (trueEnemy != null)
                 {
-                    Debug.Log("Looking towards enemy");
                     RotatingPart.transform.LookAt(trueEnemy.transform.position);
                     RotatingPart.transform.rotation = Quaternion.Euler(0f, RotatingPart.transform.rotation.eulerAngles.y, 0f);
 
@@ -340,6 +339,7 @@ public class Turret : MonoBehaviour
     {
         Debug.Log(this.gameObject.name + " health depleted");
         active = false;
+        GameObject.Destroy(this.gameObject);
     }
 
     void OnHealthChanged()

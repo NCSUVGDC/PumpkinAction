@@ -25,29 +25,35 @@ public class ExplodeOnImpact : MonoBehaviour
         HashSet<GameObject> hitObjects = new HashSet<GameObject>();
         foreach(Collider col in objectsInRange)
         {
-
-            TeamTag otherTag = col.GetComponentInParent<TeamTag>();
             
+            TeamTag otherTag = col.GetComponentInParent<TeamTag>();
 
+            Debug.Log("Shot " + col.gameObject.name);
             if (otherTag != null && !hitObjects.Contains(col.gameObject))
             {
                 hitObjects.Add(col.gameObject);
 
+
                 if (otherTag.team != teamTag.team) //Only damage other teams
                 {
                     Health enemy = col.GetComponentInParent<Health>();
-                    
+                    if (collision.collider == col)
+                    {
+                        Debug.Log("Direct hit on " + col.gameObject.name);
+                        enemy.ApplyDamage((int)damage);
+                        continue;
+                    }
+
                     if (enemy != null)
                     {
                         // linear falloff of effect
                         float proximity = (this.transform.position - col.transform.position).magnitude;
-                        if (proximity > 1f)
-                            break;
-                        float effect = 1 - (proximity / splashRadius);
-
-                        Debug.Log("Applying " + ((int)damage * effect) + " damage to " + enemy.gameObject.name);
-                        enemy.ApplyDamage((int)(damage * effect));
-
+                        if (proximity < splashRadius)
+                        {
+                            float effect = 1 - (proximity / splashRadius);
+                            Debug.Log("Applying " + ((int)damage * effect) + " damage to " + enemy.gameObject.name);
+                            enemy.ApplyDamage((int)(damage * effect));
+                        }
                     }
                 }
             }
