@@ -5,6 +5,8 @@ using UnityEngine;
 public class Billboard : MonoBehaviour
 {
     private Camera cam;
+    public bool lockedToY = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +17,9 @@ public class Billboard : MonoBehaviour
     void LateUpdate()
     {
         transform.LookAt(cam.transform);
-        transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, 0f);
+        if (lockedToY)
+        {
+            transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, 0f);
+        }
     }
 }
