@@ -10,6 +10,8 @@ public class ExplodeOnImpact : MonoBehaviour
     public float damage;
 
     TeamTag teamTag;
+    public ParticleSystem explosionEffect;
+    public SpriteRenderer sprite;
 
     private void Start()
     {
@@ -58,7 +60,12 @@ public class ExplodeOnImpact : MonoBehaviour
                 }
             }
         }
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        GetComponent<Collider>().enabled = false;
+        sprite.enabled = false;
 
-        GameObject.Destroy(this.gameObject);
+        explosionEffect.Play();
+        
+        GameObject.Destroy(this.gameObject, 1f);
     }
 }
