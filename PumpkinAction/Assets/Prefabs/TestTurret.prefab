@@ -37,11 +37,11 @@ RectTransform:
   - {fileID: 5160162963891282901}
   - {fileID: 4935334412776364499}
   m_Father: {fileID: 6620345902358139710}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.00016403198, y: 1.527}
+  m_AnchoredPosition: {x: 0, y: 1.7}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1098662101
@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedToY: 1
+  invert: 1
 --- !u!222 &1957788074072503943
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -688,7 +689,6 @@ Transform:
   m_Children:
   - {fileID: 6620345903266277254}
   - {fileID: 4618663593356294296}
-  - {fileID: 779893704459386549}
   - {fileID: 1098662097}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -728,10 +728,10 @@ MonoBehaviour:
   damage: 1
   splashRadius: 1
   turretType: 1
-  rangeUpgrade: 0
-  fireRateUpgrade: 0
+  rangeUpgrade: 2
+  fireRateUpgrade: 2
   damageUpgrade: 0
-  healthUpgrade: 0
+  healthUpgrade: 2
   Chunker_DamageLevel1: {fileID: 2599205830221815936, guid: 48be2b30ad816b74e988b23828e776f0, type: 3}
   Chunker_DamageLevel2: {fileID: 7929229625010669153, guid: ec8965ed0a327d44199d5ee2f5ae2e52, type: 3}
   Chunker_DamageLevel3: {fileID: 4887933736533761793, guid: e040d424770bbb2498cc8b9f9254ec31, type: 3}
@@ -1083,47 +1083,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &7953714825496555996
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 779893704459386549}
-  - component: {fileID: 6085356390460848166}
-  m_Layer: 15
-  m_Name: UpgradeZoneTrigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &779893704459386549
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7953714825496555996}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6620345902358139710}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6085356390460848166
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7953714825496555996}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 1.8185644, z: 3}
-  m_Center: {x: 0, y: 0.09071779, z: 0}
