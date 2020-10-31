@@ -33,6 +33,7 @@ public class UpgradeMenu : MonoBehaviour
     {
         if(team == this.team)
         {
+            Debug.Log("Making menu active");
             menu.SetActive(true);
         }
         else

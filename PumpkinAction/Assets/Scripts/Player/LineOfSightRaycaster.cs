@@ -19,7 +19,7 @@ public class LineOfSightRaycaster : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         RaycastHit hit;
 
