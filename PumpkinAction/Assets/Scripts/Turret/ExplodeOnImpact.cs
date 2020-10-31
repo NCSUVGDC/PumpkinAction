@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ExplodeOnImpact : MonoBehaviour
 {
-    AudioManager audioManager;
-    
+
+    public AudioClip explosionSound;
+    [Range(0f,1f)]
+    public float explosionSoundVolume = 1;
     public float splashRadius;
     public float damage;
 
@@ -15,13 +17,12 @@ public class ExplodeOnImpact : MonoBehaviour
 
     private void Start()
     {
-        audioManager = FindObjectOfType<AudioManager>();
         teamTag = GetComponent<TeamTag>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        audioManager.Play("Test");
+        
 
         Collider[] objectsInRange = Physics.OverlapSphere(this.transform.position, splashRadius);
         HashSet<GameObject> hitObjects = new HashSet<GameObject>();
@@ -64,6 +65,7 @@ public class ExplodeOnImpact : MonoBehaviour
         GetComponent<Collider>().enabled = false;
         sprite.enabled = false;
 
+        AudioSource.PlayClipAtPoint(explosionSound, this.transform.position,explosionSoundVolume);
         explosionEffect.Play();
         
         GameObject.Destroy(this.gameObject, 1f);

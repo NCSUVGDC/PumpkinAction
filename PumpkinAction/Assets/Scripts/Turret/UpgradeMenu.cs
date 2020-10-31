@@ -11,19 +11,31 @@ public class UpgradeMenu : MonoBehaviour
     public Text header;
     public Text seedCostText;
     public Image levelIndicator;
-
     public Sprite[] levelIndicators;
+    public Image seedSprite;
+    public Text healthText;
 
-
+    private Health health;
     private Team team;
     private int seedCostForNextUpgrade;
     private Turret turret;
 
+    private Level prevTurretLevel;
+
+    private int prevHealth;
+    private int prevMaxHealth;
+
     private void Start()
     {
+        health = GetComponent<Health>();
+        healthText.text = health.getCurrentHealth() + "/" + health.maxHealth;
+        prevHealth = health.getCurrentHealth();
+        prevMaxHealth = health.maxHealth;
+
         team = GetComponent<TeamTag>().team;
         turret = GetComponent<Turret>();
         header.text = turret.turretType.ToString();
+        prevTurretLevel = turret.turretLevel;
         seedCostText.text = "x " + turret.upgradeCost[(int)turret.turretLevel];
         levelIndicator.sprite = levelIndicators[(int)turret.turretLevel];
     }
@@ -43,7 +55,30 @@ public class UpgradeMenu : MonoBehaviour
         }
         
     }
+    private void Update()
+    {
+        if(prevTurretLevel != turret.turretLevel)
+        {
+            //update menu visuals
+            if(turret.turretLevel != Level.Level3)
+                seedCostText.text = "x " + turret.upgradeCost[(int)turret.turretLevel];
+            else
+            {
+                seedCostText.text = "MAX PUMPKIN CHUNKIN";
+                seedSprite.enabled = false;
+            }
+            Debug.Log("changing visual to: " + (int)turret.turretLevel);
+            levelIndicator.sprite = levelIndicators[(int)turret.turretLevel];
+        }
 
+        if(prevHealth != health.getCurrentHealth() || prevMaxHealth != health.maxHealth)
+        {
+            healthText.text = health.getCurrentHealth() + "/" + health.maxHealth;
+            prevHealth = health.getCurrentHealth();
+            prevMaxHealth = health.maxHealth;
+        }
+
+    }
     private void LateUpdate()
     {
         if(!lookedAtThisFrame)
@@ -63,8 +98,7 @@ public class UpgradeMenu : MonoBehaviour
             seedCount -= upgradeCost;
             turret.turretLevel += 1;
             //Play upgrade effects 
-            seedCostText.text = "x " + turret.upgradeCost[(int)turret.turretLevel];
-            levelIndicator.sprite = levelIndicators[(int)turret.turretLevel];
+
 
         }
     }

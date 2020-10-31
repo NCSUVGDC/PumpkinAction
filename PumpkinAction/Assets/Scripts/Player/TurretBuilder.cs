@@ -37,7 +37,7 @@ public class TurretBuilder : MonoBehaviour
                         stats.seedCount -= turretCost;
                         GameObject turret = GameObject.Instantiate(turretPrefab, hit.point + new Vector3(0, .5f, 0), Quaternion.identity);
                         Turret turretStats = turret.GetComponent<Turret>();
-                        turretStats.turretLevel = Level.Level1;
+                        turretStats.turretLevel = Level.Level0;
                         turretStats.turretType = TurretType.chunker;
                         turretStats.GetComponent<TeamTag>().team = team;
                         Debug.Log("Spawned turret for " + team.ToString());
@@ -49,7 +49,7 @@ public class TurretBuilder : MonoBehaviour
                         stats.seedCount -= turretCost;
                         GameObject turret = GameObject.Instantiate(turretPrefab, hit.point + new Vector3(0, .5f, 0), Quaternion.identity);
                         Turret turretStats = turret.GetComponent<Turret>();
-                        turretStats.turretLevel = Level.Level1;
+                        turretStats.turretLevel = Level.Level0;
                         turretStats.turretType = TurretType.minipumpkin;
                         turretStats.GetComponent<TeamTag>().team = team;
                     }

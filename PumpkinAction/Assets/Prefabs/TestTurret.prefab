@@ -1,5 +1,84 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &867812943
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 867812944}
+  - component: {fileID: 867812946}
+  - component: {fileID: 867812945}
+  m_Layer: 15
+  m_Name: HealthText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &867812944
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867812943}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3.2827, y: 3.2827, z: 3.2827}
+  m_Children: []
+  m_Father: {fileID: 1098662097}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0.10402155, y: -25.9}
+  m_SizeDelta: {x: 50, y: 10}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &867812946
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867812943}
+  m_CullTransparentMesh: 1
+--- !u!114 &867812945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867812943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 7de34efa7e765764d9a136603584c360, type: 3}
+    m_FontSize: 100
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 500/500
 --- !u!1 &1098662096
 GameObject:
   m_ObjectHideFlags: 0
@@ -36,6 +115,7 @@ RectTransform:
   - {fileID: 7361246302441409339}
   - {fileID: 5160162963891282901}
   - {fileID: 4935334412776364499}
+  - {fileID: 867812944}
   m_Father: {fileID: 6620345902358139710}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -217,7 +297,7 @@ GameObject:
   - component: {fileID: 3555448663057829154}
   - component: {fileID: 1749623335033323197}
   m_Layer: 15
-  m_Name: Image
+  m_Name: SeedImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -447,7 +527,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 2100000, guid: d887d0aec7e70ad4ea87c403125b0372, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -557,7 +637,7 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: x 10
@@ -621,7 +701,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 2100000, guid: f320bcb6fc353e847b5e31e9bf38a382, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -705,7 +785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8e66e4ba5cc0b46b00b78c70c706b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 0
+  team: 1
 --- !u!114 &6620345902358139711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -729,51 +809,62 @@ MonoBehaviour:
   splashRadius: 1
   turretType: 1
   turretLevel: 0
-  upgradeCost: 03000000060000000a000000
+  upgradeCost: 03000000060000000a0000000a000000
+  Chunker_DamageLevel0: {fileID: 0}
   Chunker_DamageLevel1: {fileID: 2599205830221815936, guid: 48be2b30ad816b74e988b23828e776f0, type: 3}
   Chunker_DamageLevel2: {fileID: 7929229625010669153, guid: ec8965ed0a327d44199d5ee2f5ae2e52, type: 3}
   Chunker_DamageLevel3: {fileID: 4887933736533761793, guid: e040d424770bbb2498cc8b9f9254ec31, type: 3}
+  Minipumpkin_DamageLevel0: {fileID: 0}
   Minipumpkin_DamageLevel1: {fileID: 6798865074821280120, guid: 35f76f703d3e5e64eb968c7a1f8dc6d2, type: 3}
   Minipumpkin_DamageLevel2: {fileID: 3412907341039126639, guid: 46e78bb9545eef141aa97079a0ceec10, type: 3}
   Minipumpkin_DamageLevel3: {fileID: 423772974242616212, guid: 14fa6d4b4bbe9664f8f72bf6c87e32fb, type: 3}
+  WebShooter_DamageLevel0: {fileID: 0}
   WebShooter_DamageLevel1: {fileID: 0}
   WebShooter_DamageLevel2: {fileID: 0}
   WebShooter_DamageLevel3: {fileID: 0}
   chunker_range_level:
+  - 5
   - 10
+  - 15
   - 20
-  - 25
   chunker_fireRate_level:
+  - 5
+  - 4
   - 3
   - 2
-  - 1
   chunker_damage_level:
-  - 25
-  - 50
+  - 15
+  - 35
+  - 75
   - 100
   chunker_splash_radius_level:
   - 2
   - 3
+  - 4
   - 5
-  chunker_health_level: 64000000c8000000f4010000
+  chunker_health_level: 64000000fa0000005e010000f4010000
   chunker_variance: 0.1
   minipumpkin_range_level:
   - 5
+  - 7
+  - 10
+  - 12
+  minipumpkin_fireRate_level:
+  - 0.4
+  - 0.3
+  - 0.2
+  - 0.1
+  minipumpkin_damage_level:
+  - 10
   - 10
   - 15
-  minipumpkin_fireRate_level:
-  - 0.5
-  - 0.2
-  - 0.01
-  minipumpkin_damage_level:
-  - 5
-  - 10
   - 15
   minipumpkin_splash_radius_level:
   - 0.1
+  - 0.1
+  - 0.1
   - 0.2
-  - 0.3
-  minipumpkin_health_level: 64000000c8000000f4010000
+  minipumpkin_health_level: 64000000c8000000f401000026020000
   minipumpkin_variance: 0.4
   webshooter_range_level:
   - 10
@@ -793,6 +884,7 @@ MonoBehaviour:
   - 3
   webshooter_health_level: 64000000c8000000f4010000
   webshooter_variance: 0.1
+  shootSound: {fileID: 8300000, guid: 1333e9ddc571f554dbfd00bd62a18cd5, type: 3}
 --- !u!114 &8858236529315071905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -837,6 +929,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: abf500fff0263ff468344ba6d70956c0, type: 3}
   - {fileID: 21300000, guid: 06b1e37c000c4d646b2a6747ffb9519e, type: 3}
   - {fileID: 21300000, guid: 1e743b0d173c24b4bbfdd836e1d42091, type: 3}
+  - {fileID: 21300000, guid: 867c0672454e3094da416cb386b03b32, type: 3}
+  seedSprite: {fileID: 1749623335033323197}
+  healthText: {fileID: 867812945}
 --- !u!1 &6620345902643149731
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,7 +1022,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 2100000, guid: f320bcb6fc353e847b5e31e9bf38a382, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1055,7 +1150,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 2100000, guid: 45450a0410e1173439fe9becdb469596, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

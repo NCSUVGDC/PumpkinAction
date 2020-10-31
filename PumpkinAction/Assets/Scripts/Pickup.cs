@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-    private AudioManager audioManager;
+    public AudioClip pickupSound;
 
     private void Start()
     {
-        audioManager = FindObjectOfType<AudioManager>(); 
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -31,8 +31,7 @@ public class Pickup : MonoBehaviour
     {
         Debug.Log("Picked Up");
         //play sound
-        audioManager.Play("Test");
-
+        AudioSource.PlayClipAtPoint(pickupSound, transform.position);
         GameObject.Destroy(gameObject);
     }
 }

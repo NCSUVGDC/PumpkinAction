@@ -8,10 +8,10 @@ using Random = UnityEngine.Random;
 
 public enum Level
 {
+    Level0,
     Level1,
     Level2,
     Level3,
-    Level4,
 }
 
 public enum TurretType
@@ -48,14 +48,17 @@ public class Turret : MonoBehaviour
     public int[] upgradeCost = new int[] { 8, 10, 10};
 
     [Header("Projectile Prefabs")]
+    public GameObject Chunker_DamageLevel0;
     public GameObject Chunker_DamageLevel1;
     public GameObject Chunker_DamageLevel2;
     public GameObject Chunker_DamageLevel3;
 
+    public GameObject Minipumpkin_DamageLevel0;
     public GameObject Minipumpkin_DamageLevel1;
     public GameObject Minipumpkin_DamageLevel2;
     public GameObject Minipumpkin_DamageLevel3;
 
+    public GameObject WebShooter_DamageLevel0;
     public GameObject WebShooter_DamageLevel1;
     public GameObject WebShooter_DamageLevel2;
     public GameObject WebShooter_DamageLevel3;
@@ -64,11 +67,11 @@ public class Turret : MonoBehaviour
 
     [Header("Turret Upgrade Values")]
 
-    public float[] chunker_range_level = new float[] { 10f, 20f, 25f };
-    public float[] chunker_fireRate_level = new float[] { 3f, 2f, 1f };
-    public float[] chunker_damage_level = new float[] { 10f, 20f, 25f };
-    public float[] chunker_splash_radius_level = new float[] { 1f, 2f, 3f }; //splash radius upgrades with damage
-    public int[] chunker_health_level = new int[] { 100, 200, 500 };
+    public float[] chunker_range_level = new float[] { 7f, 10f, 20f, 25f };
+    public float[] chunker_fireRate_level = new float[] { 3f, 2.5f, 2f, 1f };
+    public float[] chunker_damage_level = new float[] { 10f, 10f, 20f, 25f };
+    public float[] chunker_splash_radius_level = new float[] { 1f, 1f, 2f, 3f }; //splash radius upgrades with damage
+    public int[] chunker_health_level = new int[] { 100, 150, 200, 500 };
     public float chunker_variance = .1f;
 
 
@@ -94,8 +97,8 @@ public class Turret : MonoBehaviour
     bool active = true;
 
 
+    public AudioClip shootSound;
 
-    private AudioManager audioManager;
     private Vector3 shotVariance;
     private GameObject projectilePrefab;
 
@@ -247,7 +250,6 @@ public class Turret : MonoBehaviour
         //Set who enemies are so it doesn't shoot at team members
         DesignateEnemies();
 
-        audioManager = FindObjectOfType<AudioManager>();
 
         ApplyTurretUpgrade();
 
@@ -279,7 +281,6 @@ public class Turret : MonoBehaviour
                         if(enemies.Contains(otherTag.team))
                         {
                             var enemy = otherTag.gameObject;
-                            Debug.Log("Found an enemy " + enemy.gameObject.name);
                             var enemyDistance = (transform.position - col.transform.position).magnitude;
                         if (enemyDistance < trueEnemyDistance)
                             {
@@ -295,12 +296,12 @@ public class Turret : MonoBehaviour
                 {
                     RotatingPart.transform.LookAt(trueEnemy.transform.position);
                     RotatingPart.transform.rotation = Quaternion.Euler(0f, RotatingPart.transform.rotation.eulerAngles.y, 0f);
-
                     if (readyToShoot)
                     {
                         //Fire
                         readyToShoot = false;
-                        audioManager.Play("Test");
+
+                        AudioSource.PlayClipAtPoint(shootSound, BarrelTip.position);
 
                         float calcVelocity = Mathf.Sqrt((trueEnemyDistance - 1) * Mathf.Abs(projectileGravity)); //V = Sqrt(dist * grav) when shooting at 45 degrees
 

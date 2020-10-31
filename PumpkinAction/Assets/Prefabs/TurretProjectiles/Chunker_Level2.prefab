@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedToY: 0
+  invert: 0
 --- !u!1 &7929229625010669153
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,6 +204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8d4563e8b0c0a478b0dc8e3608f50b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionSound: {fileID: 8300000, guid: 3b78ae57be69b8b4b8caf077612869b3, type: 3}
+  explosionSoundVolume: 0.5
   splashRadius: 2
   damage: 35
   explosionEffect: {fileID: 571828079604737557}
