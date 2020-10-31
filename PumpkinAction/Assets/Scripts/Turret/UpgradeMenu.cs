@@ -1,18 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeMenu : MonoBehaviour
 {
     public float menuActiveRadius = 5f;
-    public Canvas menu;
+    public GameObject menu;
+
+    public Text header;
+    public Text seedCostText;
+    public Image levelIndicator;
+
+    public Sprite[] levelIndicators;
+
 
     private Team team;
-    private bool lookedAtThisFrame = false;
+    private int seedCostForNextUpgrade;
+    private Turret turret;
+
     private void Start()
     {
         team = GetComponent<TeamTag>().team;
-
+        turret = GetComponent<Turret>();
+        header.text = turret.turretType.ToString();
+        seedCostText.text = "x " + turret.upgradeCost[(int)turret.turretLevel];
+        levelIndicator.sprite = levelIndicators[(int)turret.turretLevel];
     }
 
     //When a player looks at the turret call this
@@ -20,14 +33,33 @@ public class UpgradeMenu : MonoBehaviour
     {
         if(team == this.team)
         {
-            lookedAtThisFrame = true;
-            return;
+            menu.SetActive(true);
         }
+        else
+        {
+            menu.SetActive(false);
+        }
+        
     }
 
-    private void LateUpdate()
+    private void Update()
     {
-        menu.enabled = lookedAtThisFrame;
-        lookedAtThisFrame = false;
+        menu.SetActive(false);
+    }
+
+    public void Upgrade(ref int seedCount)
+    {
+        if (turret.turretLevel == Level.Level3)
+            return;
+        int upgradeCost = turret.upgradeCost[(int)turret.turretLevel];
+        if (seedCount >= upgradeCost)
+        {
+            seedCount -= upgradeCost;
+            turret.turretLevel += 1;
+            //Play upgrade effects 
+            seedCostText.text = "x " + turret.upgradeCost[(int)turret.turretLevel];
+            levelIndicator.sprite = levelIndicators[(int)turret.turretLevel];
+
+        }
     }
 }

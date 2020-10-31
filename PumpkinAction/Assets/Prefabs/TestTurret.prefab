@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1098662097
 RectTransform:
   m_ObjectHideFlags: 0
@@ -494,7 +494,7 @@ GameObject:
   - component: {fileID: 2055861994166874416}
   - component: {fileID: 9120446709028344505}
   m_Layer: 15
-  m_Name: Header (1)
+  m_Name: SeedCost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -728,10 +728,8 @@ MonoBehaviour:
   damage: 1
   splashRadius: 1
   turretType: 1
-  rangeUpgrade: 2
-  fireRateUpgrade: 2
-  damageUpgrade: 0
-  healthUpgrade: 2
+  turretLevel: 0
+  upgradeCost: 03000000060000000a000000
   Chunker_DamageLevel1: {fileID: 2599205830221815936, guid: 48be2b30ad816b74e988b23828e776f0, type: 3}
   Chunker_DamageLevel2: {fileID: 7929229625010669153, guid: ec8965ed0a327d44199d5ee2f5ae2e52, type: 3}
   Chunker_DamageLevel3: {fileID: 4887933736533761793, guid: e040d424770bbb2498cc8b9f9254ec31, type: 3}
@@ -830,6 +828,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe9b87e63734c7428b2a141d76dd7f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuActiveRadius: 5
+  menu: {fileID: 1098662096}
+  header: {fileID: 1752442790}
+  seedCostText: {fileID: 9120446709028344505}
+  levelIndicator: {fileID: 7281559579595661330}
+  levelIndicators:
+  - {fileID: 21300000, guid: abf500fff0263ff468344ba6d70956c0, type: 3}
+  - {fileID: 21300000, guid: 06b1e37c000c4d646b2a6747ffb9519e, type: 3}
+  - {fileID: 21300000, guid: 1e743b0d173c24b4bbfdd836e1d42091, type: 3}
 --- !u!1 &6620345902643149731
 GameObject:
   m_ObjectHideFlags: 0

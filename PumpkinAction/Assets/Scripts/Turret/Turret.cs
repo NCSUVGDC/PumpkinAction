@@ -43,10 +43,8 @@ public class Turret : MonoBehaviour
 
     [Header("Turret Stats")]
     public TurretType turretType;
-    public Level rangeUpgrade;
-    public Level fireRateUpgrade;
-    public Level damageUpgrade;
-    public Level healthUpgrade;
+    public Level turretLevel;
+    public int[] upgradeCost = new int[] { 3, 6, 10 };
 
     [Header("Projectile Prefabs")]
     public GameObject Chunker_DamageLevel1;
@@ -126,7 +124,7 @@ public class Turret : MonoBehaviour
         switch (turretType)
         {
             case TurretType.chunker:
-                switch (damageUpgrade)
+                switch (turretLevel)
                 {
                     case Level.Level1:
                         projectilePrefab = Chunker_DamageLevel1;
@@ -142,7 +140,7 @@ public class Turret : MonoBehaviour
                 }
                 break;
             case TurretType.minipumpkin:
-                switch (damageUpgrade)
+                switch (turretLevel)
                 {
                     case Level.Level1:
                         projectilePrefab = Minipumpkin_DamageLevel1;
@@ -158,7 +156,7 @@ public class Turret : MonoBehaviour
                 }
                 break;
             case TurretType.webShooter:
-                switch (damageUpgrade)
+                switch (turretLevel)
                 {
                     case Level.Level1:
                         projectilePrefab = WebShooter_DamageLevel1;
@@ -184,34 +182,34 @@ public class Turret : MonoBehaviour
         {
             case TurretType.chunker:
                 ChangeProjectileType();
-                range = chunker_range_level[(int)rangeUpgrade];
-                ShotCooldownTime = chunker_fireRate_level[(int)fireRateUpgrade];
-                damage = chunker_damage_level[(int) damageUpgrade];
-                splashRadius = chunker_splash_radius_level[(int)damageUpgrade];
-                if(previousHealth != healthUpgrade)
-                    health.SetMaxHealth(chunker_health_level[(int)healthUpgrade]);
+                range = chunker_range_level[(int)turretLevel];
+                ShotCooldownTime = chunker_fireRate_level[(int)turretLevel];
+                damage = chunker_damage_level[(int) turretLevel];
+                splashRadius = chunker_splash_radius_level[(int)turretLevel];
+                if(previousHealth != turretLevel)
+                    health.SetMaxHealth(chunker_health_level[(int)turretLevel]);
                 xRotationVariance = chunker_variance;
                 yRotationVariance = chunker_variance;
                 break;
             case TurretType.minipumpkin:
                 ChangeProjectileType();
-                range = minipumpkin_range_level[(int)rangeUpgrade];
-                ShotCooldownTime = minipumpkin_fireRate_level[(int)fireRateUpgrade];
-                damage = minipumpkin_damage_level[(int)damageUpgrade];
-                splashRadius = minipumpkin_splash_radius_level[(int)damageUpgrade];
-                if (previousHealth != healthUpgrade)
-                    health.SetMaxHealth(minipumpkin_health_level[(int)healthUpgrade]);
+                range = minipumpkin_range_level[(int)turretLevel];
+                ShotCooldownTime = minipumpkin_fireRate_level[(int)turretLevel];
+                damage = minipumpkin_damage_level[(int)turretLevel];
+                splashRadius = minipumpkin_splash_radius_level[(int)turretLevel];
+                if (previousHealth != turretLevel)
+                    health.SetMaxHealth(minipumpkin_health_level[(int)turretLevel]);
                 xRotationVariance = minipumpkin_variance;
                 yRotationVariance = minipumpkin_variance;
                 break;
             case TurretType.webShooter:
                 ChangeProjectileType();
-                range = webshooter_range_level[(int)rangeUpgrade];
-                ShotCooldownTime = webshooter_fireRate_level[(int)fireRateUpgrade];
-                damage = webshooter_damage_level[(int)damageUpgrade];
-                splashRadius = webshooter_splash_radius_level[(int)damageUpgrade];
-                if (previousHealth != healthUpgrade)
-                    health.SetMaxHealth(minipumpkin_health_level[(int)healthUpgrade]);
+                range = webshooter_range_level[(int)turretLevel];
+                ShotCooldownTime = webshooter_fireRate_level[(int)turretLevel];
+                damage = webshooter_damage_level[(int)turretLevel];
+                splashRadius = webshooter_splash_radius_level[(int)turretLevel];
+                if (previousHealth != turretLevel)
+                    health.SetMaxHealth(minipumpkin_health_level[(int)turretLevel]);
                 xRotationVariance = webshooter_variance;
                 yRotationVariance = webshooter_variance;
                 break;
@@ -219,10 +217,10 @@ public class Turret : MonoBehaviour
                 break;
         }
 
-        previousDamage = damageUpgrade;
-        previousFireRate = fireRateUpgrade;
-        previousRange = rangeUpgrade;
-        previousHealth = healthUpgrade;
+        previousDamage = turretLevel;
+        previousFireRate = turretLevel;
+        previousRange = turretLevel;
+        previousHealth = turretLevel;
         previousType = turretType;
     }
     
@@ -258,7 +256,7 @@ public class Turret : MonoBehaviour
     void Update()
     {
 
-        if (damageUpgrade != previousDamage || fireRateUpgrade != previousFireRate || previousRange != rangeUpgrade || previousType != turretType)
+        if (turretLevel != previousDamage || turretLevel != previousFireRate || previousRange != turretLevel || previousType != turretType)
         {
             ApplyTurretUpgrade();
         }

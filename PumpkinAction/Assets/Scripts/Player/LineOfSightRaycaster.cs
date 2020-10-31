@@ -5,16 +5,17 @@ using UnityEngine;
 public class LineOfSightRaycaster : MonoBehaviour
 {
 
-    int turretLayerMask = 1 << 10;
+    int turretLayerMask = 1 << 15;
     public float turretMenuDistance = 5f;
     Team team;
-
+    PlayerStats stats;
     UpgradeMenu currentMenu;
 
     // Start is called before the first frame update
     void Start()
     {
         team = GetComponentInParent<TeamTag>().team;
+        stats = GetComponentInParent<PlayerStats>();
     }
 
     // Update is called once per frame
@@ -22,12 +23,21 @@ public class LineOfSightRaycaster : MonoBehaviour
     {
         RaycastHit hit;
 
-        if(Physics.Raycast(transform.position,transform.forward,out hit,turretMenuDistance))
+        if(Physics.Raycast(transform.position,transform.forward,out hit,turretMenuDistance, turretLayerMask))
         {
-
+            Debug.Log("Raycast hit");
             UpgradeMenu menu = hit.collider.GetComponentInParent<UpgradeMenu>();
 
+            if (menu == null)
+                return;
+            Debug.Log("Menu is not null");
             menu.OpenMenu(team);
+
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                Debug.Log("Trying to upgrade turret");
+                menu.Upgrade(ref stats.seedCount);
+            }
 
         }
 

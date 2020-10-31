@@ -2506,11 +2506,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!223 &694432797 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 1098662101, guid: 2131f2d1d6b56bd46b7409533957a039, type: 3}
-  m_PrefabInstance: {fileID: 6620345902194887945}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &695414283
 GameObject:
   m_ObjectHideFlags: 0
@@ -6686,10 +6681,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5494554300489973545, guid: 2131f2d1d6b56bd46b7409533957a039, type: 3}
-      propertyPath: menu
-      value: 
-      objectReference: {fileID: 694432797}
     - target: {fileID: 6620345902358139708, guid: 2131f2d1d6b56bd46b7409533957a039, type: 3}
       propertyPath: m_Name
       value: TestTurret
@@ -6738,8 +6729,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4943367575685825469, guid: 2131f2d1d6b56bd46b7409533957a039, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2131f2d1d6b56bd46b7409533957a039, type: 3}
 --- !u!1001 &7612081221957997228
 PrefabInstance:

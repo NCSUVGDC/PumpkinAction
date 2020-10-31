@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField]
-    private int seedCount = 0;
+    public int seedCount = 0;
     [SerializeField]
     private int seedCapacity = 10;
 
@@ -33,11 +33,17 @@ public class PlayerStats : MonoBehaviour
     {
         HUD = GetComponentInChildren<HUDManager>();
         health = GetComponent<Health>();
+        prevSeedCount = seedCount;
     }
 
+
+    private int prevSeedCount;
     // Update is called once per frame
     void Update()
     {
-        
+        if(prevSeedCount != seedCount)
+        {
+            HUD.updateSeedCount(seedCount, seedCount == seedCapacity);
+        }
     }
 }
