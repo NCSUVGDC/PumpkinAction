@@ -10,7 +10,8 @@ public enum Level
 {
     Level1,
     Level2,
-    Level3
+    Level3,
+    Level4,
 }
 
 public enum TurretType
@@ -44,7 +45,7 @@ public class Turret : MonoBehaviour
     [Header("Turret Stats")]
     public TurretType turretType;
     public Level turretLevel;
-    public int[] upgradeCost = new int[] { 3, 6, 10 };
+    public int[] upgradeCost = new int[] { 8, 10, 10};
 
     [Header("Projectile Prefabs")]
     public GameObject Chunker_DamageLevel1;

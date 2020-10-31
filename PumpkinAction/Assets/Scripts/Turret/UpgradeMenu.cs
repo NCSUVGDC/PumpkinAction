@@ -27,7 +27,7 @@ public class UpgradeMenu : MonoBehaviour
         seedCostText.text = "x " + turret.upgradeCost[(int)turret.turretLevel];
         levelIndicator.sprite = levelIndicators[(int)turret.turretLevel];
     }
-
+    bool lookedAtThisFrame = false;
     //When a player looks at the turret call this
     public void OpenMenu(Team team)
     {
@@ -35,6 +35,7 @@ public class UpgradeMenu : MonoBehaviour
         {
             Debug.Log("Making menu active");
             menu.SetActive(true);
+            lookedAtThisFrame = true;
         }
         else
         {
@@ -43,9 +44,13 @@ public class UpgradeMenu : MonoBehaviour
         
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        menu.SetActive(false);
+        if(!lookedAtThisFrame)
+        {
+            menu.SetActive(false);
+        }
+        lookedAtThisFrame = false;
     }
 
     public void Upgrade(ref int seedCount)
