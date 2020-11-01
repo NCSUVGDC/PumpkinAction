@@ -29,7 +29,6 @@ public class Pickup : MonoBehaviour
 
     void PickItUp()
     {
-        Debug.Log("Picked Up");
         //play sound
         AudioSource.PlayClipAtPoint(pickupSound, transform.position);
         GameObject.Destroy(gameObject);
