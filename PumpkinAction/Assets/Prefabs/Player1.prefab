@@ -265,11 +265,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 7de34efa7e765764d9a136603584c360, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 3
     m_AlignByGeometry: 0
@@ -1199,6 +1199,7 @@ GameObject:
   - component: {fileID: 5187962811770609962}
   - component: {fileID: 2676838072184208832}
   - component: {fileID: 892356666}
+  - component: {fileID: 1803659153}
   m_Layer: 10
   m_Name: Player1
   m_TagString: Player
@@ -1272,6 +1273,7 @@ MonoBehaviour:
   attack: 0
   attack2: 0
   attack3: 0
+  aimDownSights: 0
   reset: 0
   debugMode: 0
 --- !u!114 &4903183298460328917
@@ -1379,6 +1381,33 @@ MonoBehaviour:
   turretPlacementDistance: 3
   turretPrefab: {fileID: 6620345902358139708, guid: 2131f2d1d6b56bd46b7409533957a039, type: 3}
   team: 1
+  turretCost: 8
+  stats: {fileID: 0}
+--- !u!114 &1803659153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4903183298460328905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf9526da1f58f54dbe0db8d1bc2cdca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
+  input: {fileID: 4903183298460328904}
+  playercam: {fileID: 4903183298727609027}
+  damage: 20
+  singleshot_range: 13
+  fullshot_range: 7
+  pellets: 5
+  spreadAngle: 20
+  hipfire_spreadAngle: 8
+  singleshot_firerate: 0.5
+  fullshot_firerate: 1
+  ads_fov: 60
+  infinite_ammo: 0
 --- !u!1 &4903183298727609025
 GameObject:
   m_ObjectHideFlags: 0

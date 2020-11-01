@@ -43,6 +43,7 @@ public class PlayerStats : MonoBehaviour
     {
         if(prevSeedCount != seedCount)
         {
+            prevSeedCount = seedCount; //fixes count not going to zero
             HUD.updateSeedCount(seedCount, seedCount == seedCapacity);
         }
     }
