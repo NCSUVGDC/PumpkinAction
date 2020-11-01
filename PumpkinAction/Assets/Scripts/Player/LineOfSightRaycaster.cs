@@ -25,7 +25,6 @@ public class LineOfSightRaycaster : MonoBehaviour
 
         if(Physics.Raycast(transform.position,transform.forward,out hit,turretMenuDistance, turretLayerMask))
         {
-            Debug.Log("Raycast hit");
             UpgradeMenu menu = hit.collider.GetComponentInParent<UpgradeMenu>();
 
             if (menu == null)

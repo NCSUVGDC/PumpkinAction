@@ -130,6 +130,9 @@ public class Turret : MonoBehaviour
             case TurretType.chunker:
                 switch (turretLevel)
                 {
+                    case Level.Level0:
+                        projectilePrefab = Chunker_DamageLevel0;
+                        break;
                     case Level.Level1:
                         projectilePrefab = Chunker_DamageLevel1;
                         break;
@@ -146,6 +149,9 @@ public class Turret : MonoBehaviour
             case TurretType.minipumpkin:
                 switch (turretLevel)
                 {
+                    case Level.Level0:
+                        projectilePrefab = Minipumpkin_DamageLevel0;
+                        break;
                     case Level.Level1:
                         projectilePrefab = Minipumpkin_DamageLevel1;
                         break;
@@ -162,6 +168,9 @@ public class Turret : MonoBehaviour
             case TurretType.webShooter:
                 switch (turretLevel)
                 {
+                    case Level.Level0:
+                        projectilePrefab = WebShooter_DamageLevel0;
+                        break;
                     case Level.Level1:
                         projectilePrefab = WebShooter_DamageLevel1;
                         break;

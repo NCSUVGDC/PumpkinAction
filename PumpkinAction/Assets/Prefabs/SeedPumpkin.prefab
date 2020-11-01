@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 3773891518181439480}
   - component: {fileID: 3773891518181439482}
   - component: {fileID: 1998751852}
+  - component: {fileID: 1387972977169090957}
   m_Layer: 0
   m_Name: SeedPumpkin
   m_TagString: Untagged
@@ -141,8 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3117dc93e59b824fa6bbd23c7502a9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
+  maxHealth: 10
+  currentHealth: 10
   healthDepleted:
     m_PersistentCalls:
       m_Calls: []
@@ -166,7 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seedPrefab: {fileID: 5956151724193038750, guid: c0f33e3a7cc6c444e9500cb7a7f9f589, type: 3}
   maxDropDistance: 1
-  seedAmount: 3
+  seedAmount: 5
 --- !u!114 &1998751852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,3 +182,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   regrowTime: 15
   visual: {fileID: 3773891517931249206}
+--- !u!114 &1387972977169090957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3773891518181439481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8e66e4ba5cc0b46b00b78c70c706b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 5

@@ -69,10 +69,15 @@ public class ShotgunScript : MonoBehaviour
                 Debug.Log("SingleShot hit");
 
                 //TODO (what's here currently doesnt work apparently)
-                //if(hit.collider.gameObject.GetComponentInParent<TeamTag>().team != team)
-                //{
-                //    hit.collider.gameObject.GetComponentInParent<Health>().ApplyDamage(5);
-                //}
+                TeamTag teamTag = hit.collider.gameObject.GetComponentInParent<TeamTag>();
+                if (teamTag != null)
+                {
+                    if (teamTag.team != team)
+                    {
+                        Debug.Log("Dealing Damage");
+                        hit.collider.gameObject.GetComponentInParent<Health>()?.ApplyDamage(damage);
+                    }
+                }
 
                 Debug.DrawLine(playercam.transform.position, hit.point, Color.yellow, 1f);
 
@@ -110,10 +115,17 @@ public class ShotgunScript : MonoBehaviour
                     Debug.Log("Fullshot Pellet hit");
 
                     //TODO (what's here currently doesnt work apparently)
-                    //if (hit.collider.gameObject.GetComponentInParent<TeamTag>().team != team)
-                    //{
-                    //    hit.collider.gameObject.GetComponentInParent<Health>().ApplyDamage(5);
-                    //}
+                    TeamTag teamTag = hit.collider.gameObject.GetComponentInParent<TeamTag>();
+                    if(teamTag != null)
+                    {
+                        if (teamTag.team != team)
+                        {
+                            Debug.Log("Dealing Damage");
+                            hit.collider.gameObject.GetComponentInParent<Health>()?.ApplyDamage(damage);
+                        }
+                    }
+
+
 
                     Debug.DrawLine(playercam.transform.position, hit.point, Color.yellow, 1f);
 

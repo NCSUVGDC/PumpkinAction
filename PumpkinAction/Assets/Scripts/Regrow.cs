@@ -7,10 +7,12 @@ public class Regrow : MonoBehaviour
     public float regrowTime = 15f;
     public GameObject visual;
 
+    private Health health;
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Health>().healthDepleted.AddListener(StartRegrowing);
+        health = GetComponent<Health>();
+        health.healthDepleted.AddListener(StartRegrowing);
     }
 
 
@@ -24,5 +26,6 @@ public class Regrow : MonoBehaviour
     {
         yield return new WaitForSeconds(regrowTime);
         visual.SetActive(true);
+        health.Heal(health.maxHealth);
     }
 }

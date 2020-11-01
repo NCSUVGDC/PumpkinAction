@@ -821,7 +821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8e66e4ba5cc0b46b00b78c70c706b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 1
+  team: 0
 --- !u!114 &6620345902358139711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,11 +846,11 @@ MonoBehaviour:
   turretType: 1
   turretLevel: 0
   upgradeCost: 03000000060000000a0000000a000000
-  Chunker_DamageLevel0: {fileID: 0}
+  Chunker_DamageLevel0: {fileID: 2599205830221815936, guid: 48be2b30ad816b74e988b23828e776f0, type: 3}
   Chunker_DamageLevel1: {fileID: 2599205830221815936, guid: 48be2b30ad816b74e988b23828e776f0, type: 3}
   Chunker_DamageLevel2: {fileID: 7929229625010669153, guid: ec8965ed0a327d44199d5ee2f5ae2e52, type: 3}
   Chunker_DamageLevel3: {fileID: 4887933736533761793, guid: e040d424770bbb2498cc8b9f9254ec31, type: 3}
-  Minipumpkin_DamageLevel0: {fileID: 0}
+  Minipumpkin_DamageLevel0: {fileID: 6798865074821280120, guid: 35f76f703d3e5e64eb968c7a1f8dc6d2, type: 3}
   Minipumpkin_DamageLevel1: {fileID: 6798865074821280120, guid: 35f76f703d3e5e64eb968c7a1f8dc6d2, type: 3}
   Minipumpkin_DamageLevel2: {fileID: 3412907341039126639, guid: 46e78bb9545eef141aa97079a0ceec10, type: 3}
   Minipumpkin_DamageLevel3: {fileID: 423772974242616212, guid: 14fa6d4b4bbe9664f8f72bf6c87e32fb, type: 3}

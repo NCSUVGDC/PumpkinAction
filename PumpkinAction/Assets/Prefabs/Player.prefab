@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 5397951617261639956}
   - component: {fileID: 5397951616010811071}
   m_Layer: 10
-  m_Name: Player1 1
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seedCount: 10
-  seedCapacity: 10
+  seedCapacity: 35
 --- !u!114 &943003663605329924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1026,7 +1026,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: x 10
+  m_Text: x 8
 --- !u!1 &5397951616068904898
 GameObject:
   m_ObjectHideFlags: 0
@@ -1300,7 +1300,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: x 10
+  m_Text: 'x 8
+
+'
 --- !u!1 &5397951616677837906
 GameObject:
   m_ObjectHideFlags: 0
