@@ -36,7 +36,7 @@ public class UpgradeMenu : MonoBehaviour
         turret = GetComponent<Turret>();
         header.text = turret.turretType.ToString();
         prevTurretLevel = turret.turretLevel;
-        seedCostText.text = "x " + turret.upgradeCost[(int)turret.turretLevel];
+        seedCostText.text = "x " + turret.upgradeCost[(int)turret.turretLevel] + " [ Press E ]";
         levelIndicator.sprite = levelIndicators[(int)turret.turretLevel];
     }
     bool lookedAtThisFrame = false;
@@ -61,7 +61,7 @@ public class UpgradeMenu : MonoBehaviour
         {
             //update menu visuals
             if(turret.turretLevel != Level.Level3)
-                seedCostText.text = "x " + turret.upgradeCost[(int)turret.turretLevel];
+                seedCostText.text = "x " + turret.upgradeCost[(int)turret.turretLevel] + " [ Press E ]";
             else
             {
                 seedCostText.text = "MAX PUMPKIN CHUNKIN";
