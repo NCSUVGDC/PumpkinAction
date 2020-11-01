@@ -8,6 +8,8 @@ public class ShotgunScript : MonoBehaviour
     public PlayerStats stats;
     public playerInput input;
     public Camera playercam;
+    public ParticleSystem bullet_tracers;
+    public Transform gun_muzzle;
 
     public int damage = 5; //because health is an int
     public float singleshot_range = 6f;
@@ -25,6 +27,8 @@ public class ShotgunScript : MonoBehaviour
 
     public bool infinite_ammo = false;
 
+    private float tracer_startLifetime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +36,8 @@ public class ShotgunScript : MonoBehaviour
         stats = GetComponentInParent<PlayerStats>();
 
         start_fov = playercam.fieldOfView;
+
+        tracer_startLifetime = bullet_tracers.startLifetime;
     }
 
     // Update is called once per frame
@@ -69,10 +75,20 @@ public class ShotgunScript : MonoBehaviour
                 //}
 
                 Debug.DrawLine(playercam.transform.position, hit.point, Color.yellow, 1f);
+
+                Vector3 tracer_angle = Vector3.Normalize(hit.point - bullet_tracers.transform.position);
+                bullet_tracers.gameObject.transform.forward = tracer_angle; 
+                bullet_tracers.startLifetime = tracer_startLifetime; //ignore obsolete, the "correct" way of doing it is read-only
+                bullet_tracers.Emit(1);
             }
             else
             {
                 Debug.DrawLine(playercam.transform.position, playercam.transform.position + hit_direction * singleshot_range, Color.yellow, 1f);
+
+                Vector3 tracer_angle = Vector3.Normalize((playercam.transform.position + hit_direction * singleshot_range) - bullet_tracers.transform.position);
+                bullet_tracers.gameObject.transform.forward = hit_direction;
+                bullet_tracers.startLifetime = singleshot_range / bullet_tracers.startSpeed * 10f; //ignore obsolete, the "correct" way of doing it is read-only
+                bullet_tracers.Emit(1);
             }
 
         }
@@ -100,13 +116,21 @@ public class ShotgunScript : MonoBehaviour
                     //}
 
                     Debug.DrawLine(playercam.transform.position, hit.point, Color.yellow, 1f);
+
+                    Vector3 tracer_angle = Vector3.Normalize(hit.point - bullet_tracers.transform.position);
+                    bullet_tracers.gameObject.transform.forward = tracer_angle;
+                    bullet_tracers.startLifetime = tracer_startLifetime; //ignore obsolete, the "correct" way of doing it is read-only
+                    bullet_tracers.Emit(1);
                 }
                 else
                 {
                     Debug.DrawLine(playercam.transform.position, playercam.transform.position + hit_direction * fullshot_range, Color.yellow, 1f);
+
+                    Vector3 tracer_angle = Vector3.Normalize((playercam.transform.position + hit_direction * fullshot_range) - bullet_tracers.transform.position);
+                    bullet_tracers.gameObject.transform.forward = tracer_angle;
+                    bullet_tracers.startLifetime = fullshot_range / bullet_tracers.startSpeed * 10f; //ignore obsolete, the "correct" way of doing it is read-only
+                    bullet_tracers.Emit(1);
                 }
-
-
             }
         }
 
