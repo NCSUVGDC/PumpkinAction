@@ -7,7 +7,19 @@ public class HUDManager : MonoBehaviour
 {
 
     public Text seedCount;
+    public Text healthText;
+    private Health health;
 
+    private void Start()
+    {
+        health = GetComponentInParent<Health>();
+        health.healthChanged.AddListener(updateHealthText);
+    }
+    public void updateHealthText()
+    {
+        Debug.Log("updating health text");
+        healthText.text = "" +  health.getCurrentHealth();
+    }
 
     public void updateSeedCount(int newCount, bool seedsFull)
     {

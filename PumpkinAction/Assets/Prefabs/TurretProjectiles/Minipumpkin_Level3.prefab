@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8d4563e8b0c0a478b0dc8e3608f50b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionSound: {fileID: 8300000, guid: 3b78ae57be69b8b4b8caf077612869b3, type: 3}
+  explosionSound: {fileID: 8300000, guid: 4a1a0a19cd4ab5c41852a3332c3a0ad5, type: 3}
   explosionSoundVolume: 0.1
   splashRadius: 0
   damage: 0

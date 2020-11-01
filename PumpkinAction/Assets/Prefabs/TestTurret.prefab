@@ -821,7 +821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8e66e4ba5cc0b46b00b78c70c706b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 0
+  team: 1
 --- !u!114 &6620345902358139711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -920,7 +920,7 @@ MonoBehaviour:
   - 3
   webshooter_health_level: 64000000c8000000f4010000
   webshooter_variance: 0.1
-  shootSound: {fileID: 8300000, guid: 1333e9ddc571f554dbfd00bd62a18cd5, type: 3}
+  shootSound: {fileID: 8300000, guid: 1aaa0e4bad426f74cafa31aaa223c5ae, type: 3}
 --- !u!114 &8858236529315071905
 MonoBehaviour:
   m_ObjectHideFlags: 0

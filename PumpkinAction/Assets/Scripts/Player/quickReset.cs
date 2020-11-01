@@ -11,10 +11,16 @@ public class quickReset : MonoBehaviour
 
     public float yVoidValue = -20f;
 
+    private Health health;
+    private PlayerStats stats;
+
     // Start is called before the first frame update
     void Start()
     {
         resetPosition = playerRigidBody.transform.position; //set the reset position to be where the gameobject starts
+        stats = GetComponent<PlayerStats>();
+        health = GetComponent<Health>();
+        health.healthDepleted.AddListener(ResetPlayer);
     }
 
     // Update is called once per frame
@@ -38,5 +44,7 @@ public class quickReset : MonoBehaviour
     {
         playerRigidBody.transform.position = resetPosition;
         playerRigidBody.velocity = Vector3.zero;
+        health.Heal(health.maxHealth);
+        stats.seedCount = 0;
     }
 }
