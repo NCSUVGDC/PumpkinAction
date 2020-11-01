@@ -8,10 +8,13 @@ public class Billboard : MonoBehaviour
     public bool lockedToY = true;
     public bool invert = false;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main;
+
     }
 
 
