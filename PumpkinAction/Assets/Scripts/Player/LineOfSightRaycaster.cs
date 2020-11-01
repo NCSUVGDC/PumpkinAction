@@ -29,7 +29,6 @@ public class LineOfSightRaycaster : MonoBehaviour
 
             if (menu == null)
                 return;
-            Debug.Log("Menu is not null");
             menu.OpenMenu(team);
 
             if(Input.GetKeyDown(KeyCode.E))
