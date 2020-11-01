@@ -31,7 +31,6 @@ public class ExplodeOnImpact : MonoBehaviour
             
             TeamTag otherTag = col.GetComponentInParent<TeamTag>();
 
-            Debug.Log("Shot " + col.gameObject.name);
             if (otherTag != null && !hitObjects.Contains(col.gameObject))
             {
                 hitObjects.Add(col.gameObject);
@@ -42,7 +41,6 @@ public class ExplodeOnImpact : MonoBehaviour
                     Health enemy = col.GetComponentInParent<Health>();
                     if (collision.collider == col)
                     {
-                        Debug.Log("Direct hit on " + col.gameObject.name);
                         enemy.ApplyDamage((int)damage);
                         continue;
                     }

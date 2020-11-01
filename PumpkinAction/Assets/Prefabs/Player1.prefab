@@ -1199,6 +1199,7 @@ GameObject:
   - component: {fileID: 5187962811770609962}
   - component: {fileID: 2676838072184208832}
   - component: {fileID: 892356666}
+  - component: {fileID: 941898864}
   m_Layer: 10
   m_Name: Player1
   m_TagString: Player
@@ -1379,6 +1380,23 @@ MonoBehaviour:
   turretPlacementDistance: 3
   turretPrefab: {fileID: 6620345902358139708, guid: 2131f2d1d6b56bd46b7409533957a039, type: 3}
   team: 1
+  turretCost: 8
+  stats: {fileID: 0}
+--- !u!114 &941898864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4903183298460328905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5376bf6d1d4d064419135a2396dd6a0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seedPrefab: {fileID: 5956151724193038750, guid: c0f33e3a7cc6c444e9500cb7a7f9f589, type: 3}
+  maxDropDistance: 1
+  seedAmount: 3
 --- !u!1 &4903183298727609025
 GameObject:
   m_ObjectHideFlags: 0
