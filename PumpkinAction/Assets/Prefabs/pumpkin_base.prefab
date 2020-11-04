@@ -724,6 +724,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: ccac3e0849f1b184dae309542962561b, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 3dde703a7156f0347abefdd94994c5c8, type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3dde703a7156f0347abefdd94994c5c8, type: 3}
       propertyPath: m_Name
       value: pumpkin_candle
@@ -815,6 +819,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: ccac3e0849f1b184dae309542962561b, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 13a696dae3c794943b523ec9acc36de7, type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 13a696dae3c794943b523ec9acc36de7, type: 3}
       propertyPath: m_Name
       value: pumpkin_base_model

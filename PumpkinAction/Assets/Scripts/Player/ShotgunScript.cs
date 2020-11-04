@@ -11,6 +11,8 @@ public class ShotgunScript : MonoBehaviour
     public ParticleSystem bullet_tracers;
     public Transform gun_muzzle;
 
+    public Animator shotgun_fps_anims;
+
     public int damage = 5; //because health is an int
     public float singleshot_range = 6f;
     public float fullshot_range = 3f;
@@ -19,6 +21,7 @@ public class ShotgunScript : MonoBehaviour
     public float hipfire_spreadAngle = 8f;
     public float singleshot_firerate = 0.5f;
     public float fullshot_firerate = 1f;
+    public float reload_time = 2f;
 
     public float ads_fov = 60f;
     private float start_fov;
@@ -46,10 +49,12 @@ public class ShotgunScript : MonoBehaviour
         if (input.aimDownSights)
         {
             playercam.fieldOfView = ads_fov;
+            shotgun_fps_anims.SetBool("aimDownSights", true);
         }
         else
         {
             playercam.fieldOfView = start_fov;
+            shotgun_fps_anims.SetBool("aimDownSights", false);
         }
 
         cooldown -= Time.deltaTime;
@@ -58,6 +63,8 @@ public class ShotgunScript : MonoBehaviour
         {
             cooldown = singleshot_firerate;
             stats.seedCount -= (infinite_ammo ? 0 : 1);
+
+            shotgun_fps_anims.SetTrigger("anim_shoot_single");
 
             float applied_spreadAngle = (input.aimDownSights ? 0f : hipfire_spreadAngle);
             Vector3 hit_direction = CalcHitDirection(applied_spreadAngle, fullshot_range);
@@ -102,6 +109,8 @@ public class ShotgunScript : MonoBehaviour
         {
             cooldown = fullshot_firerate;
             stats.seedCount -= (infinite_ammo ? 0 : pellets);
+            
+            shotgun_fps_anims.SetTrigger("anim_shoot_burst");
 
             for (int i = 0; i < pellets; i++)
             {
@@ -145,6 +154,16 @@ public class ShotgunScript : MonoBehaviour
                 }
             }
         }
+
+        if (input.reload && cooldown <= 0f)
+        {
+            cooldown = reload_time;
+            shotgun_fps_anims.SetTrigger("anim_reload");
+
+            stats.seedCount = 10; //should really be on a delay for after the reload time ends
+        }
+
+
 
         if (Input.GetKeyDown(KeyCode.F9))
         {

@@ -15,6 +15,7 @@ public class playerInput : MonoBehaviour
     public bool attack2;
     public bool attack3;
     public bool aimDownSights;
+    public bool reload;
 
     public bool reset;
 
@@ -40,6 +41,7 @@ public class playerInput : MonoBehaviour
         attack3 = Input.GetButton("Fire3"); //middle click
 
         aimDownSights = Input.GetKey(KeyCode.Q); //Ideally a button input in the project settings input manager
+        reload = Input.GetKey(KeyCode.R); //Ideally a button input in the project settings input manager
 
         if (Input.GetKeyDown(KeyCode.F12))
         {
